@@ -253,8 +253,8 @@ class Juice < ::Test::Unit::TestCase
   end
 
   def test_null_char
-    string = Oj.load("\"\0\"")
-    assert_equal "\0", string
+    assert_raise(Oj::ParseError) { Oj.load("\"\0\"") }
+    assert_raise(Oj::ParseError) { Oj.load("\"\\\0\"") }
   end
 
   def test_array
