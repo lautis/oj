@@ -237,4 +237,12 @@ class ScpTest < ::Test::Unit::TestCase
     end
   end
 
+  def test_null_string
+    handler = AllHandler.new()
+    json = %{"\0"}
+    assert_raise Oj::ParseError do
+      Oj.sc_parse(handler, json)
+    end
+  end
+
 end
